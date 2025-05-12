@@ -1,9 +1,19 @@
-FROM node:16.18
+FROM node:24.0.1
 
 ENV PORT=3000
+ENV HOST=0.0.0.0
 
-COPY . /frontend-react-js
-WORKDIR /frontend-react-js
-RUN npm install react-scripts
+WORKDIR /app
+
+# Copy package.json and package-lock.json for layer caching
+COPY package*.json ./
+
+# Install dependencies (including react-scripts)
+RUN npm install
+
+# Copy the full source code
+COPY . .
+
 EXPOSE ${PORT}
+
 CMD ["npm", "start"]
