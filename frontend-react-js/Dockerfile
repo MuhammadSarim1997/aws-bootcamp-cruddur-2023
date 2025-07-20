@@ -1,4 +1,4 @@
-FROM node:24.0.1
+FROM node:24.4.1
 
 ENV PORT=3000
 ENV HOST=0.0.0.0
